@@ -1,15 +1,29 @@
-import { useEffect } from "react";
-import { connectAirtable } from "./utils/airtable";
+import { useEffect, useState } from "react";
 import "./App.css";
+import { Clients } from "./utils/types/client";
+import Chip from "./components/Chip/Chip";
+import ClientForm from "./components/ClientForm/ClientForm";
+import { getClients } from "./utils/airtable";
 
 function App() {
+  const [clients, setClients] = useState<Clients>([]);
+
   useEffect(() => {
-    connectAirtable();
+    getClients(setClients);
   }, []);
 
   return (
-    <div className="App">
-      <h1>Welcome to Airtable Integration</h1>
+    <div>
+      <ul>
+        {clients.map((client) => (
+          <li key={client.id}>
+            ID : {client.id} - {client.firstname} {client.lastname} -{" "}
+            {client.email} - {client.phoneNumber} -{" "}
+            <Chip status={client.status} />
+          </li>
+        ))}
+      </ul>
+      <ClientForm setClients={setClients} />
     </div>
   );
 }
