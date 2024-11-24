@@ -5,7 +5,7 @@ const getClients = (
   setClients: React.Dispatch<React.SetStateAction<Clients>>
 ) => {
   const base = connectAirtable();
-  const TABLE_NAME = "Table 1";
+  const TABLE_NAME = "clientList";
   const table = base(TABLE_NAME);
 
   const GRID_VIEW_NAME = "Grid view";
