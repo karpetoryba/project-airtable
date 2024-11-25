@@ -30,8 +30,8 @@ function Admin({ clients, setClients }: AdminProps) {
   };
 
   return (
-    <div>
-      <h2 className="text-2xl font-bold mb-4">Admin Panel</h2>
+    <div className="min-h-screen bg-gray-50 p-8 text-gray-800">
+      <h2 className="text-3xl font-semibold mb-6 text-gray-900">Admin Panel</h2>
       {editingClient ? (
         <EditClientForm
           client={editingClient}
@@ -41,53 +41,52 @@ function Admin({ clients, setClients }: AdminProps) {
           onCancel={() => setEditingClient(null)}
         />
       ) : (
-        <table className="min-w-full border-collapse border border-gray-300">
-          <thead>
-            <tr className="bg-gray-200">
-              <th className="border border-gray-300 px-4 py-2">First Name</th>
-              <th className="border border-gray-300 px-4 py-2">Last Name</th>
-              <th className="border border-gray-300 px-4 py-2">Email</th>
-              <th className="border border-gray-300 px-4 py-2">Phone Number</th>
-              <th className="border border-gray-300 px-4 py-2">Status</th>
-              <th className="border border-gray-300 px-4 py-2">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {clients.map((client) => (
-              <tr key={client.id} className="hover:bg-gray-100">
-                <td className="border border-gray-300 px-4 py-2">
-                  {client.firstname}
-                </td>
-                <td className="border border-gray-300 px-4 py-2">
-                  {client.lastname}
-                </td>
-                <td className="border border-gray-300 px-4 py-2">
-                  {client.email}
-                </td>
-                <td className="border border-gray-300 px-4 py-2">
-                  {client.phoneNumber}
-                </td>
-                <td className="border border-gray-300 px-4 py-2">
-                  {client.status}
-                </td>
-                <td className="border border-gray-300 px-4 py-2">
-                  <button
-                    onClick={() => setEditingClient(client)}
-                    className="text-green-500 hover:underline mr-2"
-                  >
-                    Update
-                  </button>
-                  <button
-                    onClick={() => handleDelete(client.id)}
-                    className="text-red-500 hover:underline"
-                  >
-                    Delete
-                  </button>
-                </td>
+        <div className="rounded-lg shadow-md overflow-hidden bg-white">
+          <table className="min-w-full text-sm">
+            <thead>
+              <tr className="bg-gray-100 text-gray-600">
+                <th className="px-6 py-4 text-left font-medium">First Name</th>
+                <th className="px-6 py-4 text-left font-medium">Last Name</th>
+                <th className="px-6 py-4 text-left font-medium">Email</th>
+                <th className="px-6 py-4 text-left font-medium">
+                  Phone Number
+                </th>
+                <th className="px-6 py-4 text-left font-medium">Status</th>
+                <th className="px-6 py-4 text-left font-medium">Actions</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {clients.map((client, index) => (
+                <tr
+                  key={client.id}
+                  className={`${
+                    index % 2 === 0 ? "bg-white" : "bg-gray-50"
+                  } hover:bg-gray-100`}
+                >
+                  <td className="px-6 py-4">{client.firstname}</td>
+                  <td className="px-6 py-4">{client.lastname}</td>
+                  <td className="px-6 py-4">{client.email}</td>
+                  <td className="px-6 py-4">{client.phoneNumber}</td>
+                  <td className="px-6 py-4">{client.status}</td>
+                  <td className="px-6 py-4">
+                    <button
+                      onClick={() => setEditingClient(client)}
+                      className="text-blue-600 hover:underline mr-4"
+                    >
+                      Update
+                    </button>
+                    <button
+                      onClick={() => handleDelete(client.id)}
+                      className="text-red-600 hover:underline"
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       )}
     </div>
   );

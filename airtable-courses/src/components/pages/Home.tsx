@@ -33,49 +33,54 @@ const ClientForm = ({
   return (
     <form
       onSubmit={handleSubmit}
-      className="max-w-md mx-auto p-6 bg-white shadow-md rounded-lg space-y-4"
+      className="max-w-lg mx-auto p-8 bg-white shadow-lg rounded-lg space-y-6 border border-gray-200"
     >
-      <input
-        type="text"
-        name="firstname"
-        placeholder="Votre Prénom"
-        required
-        onChange={handleChange}
-        value={formData.firstname}
-        className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
-      />
-      <input
-        type="text"
-        name="lastname"
-        placeholder="Votre Nom"
-        required
-        onChange={handleChange}
-        value={formData.lastname}
-        className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
-      />
-      <input
-        type="email"
-        name="email"
-        placeholder="Votre Email"
-        required
-        onChange={handleChange}
-        value={formData.email}
-        className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
-      />
-      <input
-        type="text"
-        name="phoneNumber"
-        placeholder="Votre Numéro de Téléphone"
-        required
-        onChange={handleChange}
-        value={formData.phoneNumber}
-        className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
-      />
+      <h2 className="text-2xl font-semibold text-gray-800 text-center">
+        Ajouter un nouveau client
+      </h2>
+      <div className="space-y-4">
+        <input
+          type="text"
+          name="firstname"
+          placeholder="Prénom"
+          required
+          onChange={handleChange}
+          value={formData.firstname}
+          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-1"
+        />
+        <input
+          type="text"
+          name="lastname"
+          placeholder="Nom"
+          required
+          onChange={handleChange}
+          value={formData.lastname}
+          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-1"
+        />
+        <input
+          type="email"
+          name="email"
+          placeholder="Email"
+          required
+          onChange={handleChange}
+          value={formData.email}
+          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-1"
+        />
+        <input
+          type="text"
+          name="phoneNumber"
+          placeholder="Téléphone"
+          required
+          onChange={handleChange}
+          value={formData.phoneNumber}
+          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-1"
+        />
+      </div>
       <button
         type="submit"
-        className="w-full p-3 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400"
+        className="w-full py-3 bg-gray-800 text-white rounded-lg hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-1 transition"
       >
-        Créer le nouveau client
+        Ajouter
       </button>
     </form>
   );
