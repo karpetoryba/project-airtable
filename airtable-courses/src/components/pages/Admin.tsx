@@ -1,15 +1,24 @@
 import { useEffect } from "react";
 import { getClients } from "../../utils/airtable";
 import { Clients } from "../../utils/types/client";
+import deleteClient from "../../utils/airtable/deleteClient";
 
 interface AdminProps {
   clients: Clients;
+  setClients: React.Dispatch<React.SetStateAction<Clients>>;
 }
 
-function Admin({ clients }: AdminProps) {
+function Admin({ clients, setClients }: AdminProps) {
   useEffect(() => {
     getClients(clients);
   }, []);
+
+  const handleDelete = async (id: string) => {
+    await deleteClient(id);
+    setClients((prevClients) =>
+      prevClients.filter((client) => client.id !== id)
+    );
+  };
 
   return (
     <div>
@@ -47,7 +56,12 @@ function Admin({ clients }: AdminProps) {
                 <button className="text-green-500 hover:underline mr-2">
                   Update
                 </button>
-                <button className="text-red-500 hover:underline">Delete</button>
+                <button
+                  onClick={() => handleDelete(client.id)}
+                  className="text-red-500 hover:underline"
+                >
+                  Delete
+                </button>
               </td>
             </tr>
           ))}
